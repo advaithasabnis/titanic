@@ -54,6 +54,20 @@ for tnum, df in dataAll_grouped_ln:
                             'prediction'] = pd.Series([df.drop(ind)['survived'].any(),
                                                        df.drop(ind)['survived'].all()]).all()
 
+# Same as above but grouped by ticket number                                                       
+dataAll_grouped_ticket = dataAll.loc[dataAll.title!='Mr'].groupby('ticket')
+for tnum, df in dataAll_grouped_ticket:
+    if ((len(df)!=1) & (df.survived.isnull().any())):
+        for ind, row in df.iterrows():
+            if row.title=='Mrs':
+                dataAll.loc[dataAll.passengerid==row.passengerid,
+                            'prediction'] = pd.Series([df.drop(ind)['survived'].any(),
+                                                       df.drop(ind)['survived'].all()]).any()
+            else:
+                dataAll.loc[dataAll.passengerid==row.passengerid,
+                            'prediction'] = pd.Series([df.drop(ind)['survived'].any(),
+                                                       df.drop(ind)['survived'].all()]).all()
+
 dataAll.loc[:, 'prediction'] = dataAll['prediction'].astype(int)
 
 #%% Separating train and test set
