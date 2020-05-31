@@ -1,4 +1,4 @@
 # titanic
 Solution to the Titanic ML competition
 
-My first challenge while exploring data science, predicting survival with the famous titanic dataset. Model predicts survival based on gender and survival of family members. This works better than any fancy classification models.
+A non-machine learning model that predicts survival based on gender and survival of family members (by last name or ticket id). This model works better than most ML methods.
